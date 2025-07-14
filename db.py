@@ -1,11 +1,8 @@
-# db.py
 from sqlmodel import SQLModel, create_engine, Session
-from models import LTIUserLaunch  # e outros modelos
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+DATABASE_URL = "postgresql://abeelity_user:4HfQeVkqAjm%3DXK%5F@localhost:5432/abeelity_db"
+engine = create_engine(DATABASE_URL, echo=True)
 
-engine = create_engine(sqlite_url, echo=True)
 
 def get_session():
     return Session(engine)
