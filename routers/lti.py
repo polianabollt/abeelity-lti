@@ -209,8 +209,7 @@ async def lti_launch(request: Request):
                     <p><strong>Curso:</strong> {course}</p>
                     <p><strong>Função:</strong> {", ".join(roles)}</p>
                     <hr>
-                    <h3>✅ Lançamento LTI bem-sucedido</h3>
-                    <p>Aqui você pode mostrar gráficos, dashboards ou qualquer funcionalidade.</p>
+                    <h3>✅ Lançamento LTI bem-sucedido</h3> 
                 </body>
             </html>
         ''')
