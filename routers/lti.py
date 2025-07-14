@@ -19,7 +19,18 @@ router = APIRouter()
 TOOL_CONFIG = {
     "tool_key_id": "chave-123"
 }
-NGROK_DOMAIN = "https://6002a723ad45.ngrok-free.app"
+NGROK_DOMAIN = "https://roleplayporia.online"
+
+@router.get("/admin/lms")
+def listar_lms(session: Session = Depends(get_session)):
+    print("🔍 Iniciando busca de plataformas...")
+    try:
+        plataformas = session.exec(select(LMSPlatform)).all()
+        print(f"✅ Total de plataformas encontradas: {len(plataformas)}")
+        return plataformas
+    except Exception as e:
+        print("❌ ERRO NA ROTA /lti/admin/lms:", e)
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar LMS: {e}")
 
 # --- Carregar chave privada ---
 private_key_path = Path("private_key.pem")
