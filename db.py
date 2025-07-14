@@ -1,6 +1,6 @@
-from dotenv import load_dotenv
  
 from sqlmodel import SQLModel, create_engine, Session
+from models import LMSPlatform, LTIUserLaunch
 import os
 DATABASE_URL="postgresql://abeelity_user:4HfQeVkqAjm=XK_@localhost:5432/abeelity_db"
  
@@ -14,3 +14,5 @@ def get_session():
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
+
+    
