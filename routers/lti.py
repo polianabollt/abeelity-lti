@@ -236,6 +236,16 @@ def criar_lms(lms: LMSPlatform, session: Session = Depends(get_session)):
     session.refresh(lms)
     return lms
 
+@router.delete("/admin/lms/{lms_id}")
+def deletar_lms(lms_id: int = Path(..., description="ID da plataforma a ser deletada"), session: Session = Depends(get_session)):
+    lms = session.get(LMSPlatform, lms_id)
+    if not lms:
+        raise HTTPException(status_code=404, detail="Plataforma não encontrada.")
+
+    session.delete(lms)
+    session.commit()
+    return {"message": f"Plataforma {lms.name} deletada com sucesso."}
+
 @router.get("/admin/launches")
 def listar_lancamentos(session: Session = Depends(get_session)):
     launches = session.exec(select(LTIUserLaunch).order_by(LTIUserLaunch.created_at.desc())).all()
