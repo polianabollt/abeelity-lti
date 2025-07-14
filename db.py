@@ -12,3 +12,6 @@ if not DATABASE_URL:
 engine = create_engine(DATABASE_URL, echo=True)
 def get_session():
     return Session(engine)
+
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
